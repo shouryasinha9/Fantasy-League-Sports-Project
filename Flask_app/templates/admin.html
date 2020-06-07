@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoCric11</title>
+<link rel="icon" type="image/png" href="/static/images/loginlogo1.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+body{
+	background-color:#cccccc;
+}
+.tablink {
+  background-color: #e62e00;
+  color: white;
+  padding: 14px 16px;
+  font-size: 17px;
+  transition: 0.45s;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+.half{
+  width: 600px;
+  height: 290px;
+  display: inline-block;
+  margin-left: 30px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.control{
+	width: inherit;
+	height: 40px;
+	background-color: #e62e00; 
+	color: white;
+	padding: 8px;
+	text-align: center;
+	  border-radius: 4px;
+}
+input[type=text]{
+	padding-left: 10px;
+}
+input[type=submit]{
+	background-color: #00b300;
+	border: 1px solid transparent;
+	color: white;
+	width: 100px;
+}
+</style>
+</head>
+	<body>
+	<div class="tablink">
+      <div style="font-size: 30px; margin-left: 10px; display: inline-block; width: 300px;">Welcome ADMIN</div>
+
+    </div>
+    <br>
+    <div class="half">
+    <div class="control"><b>Update Player Points</b></div>
+    <div style="margin-left: 220px; color: black;">UPDATE MATCH INFO</div>
+    <div style="background-color: #e62e00;padding: 15px; color: white;   border-radius: 4px;">
+    <span>Match Between:</span>	
+	<form action="/admin"  method="POST">
+		<input type="text" name="t1" placeholder="Enter Team 1">
+		vs
+		<input type="text" name="t2" placeholder="Enter Team 2">
+		<br>
+		Update player points:
+		<br>
+		<input type="text" name="name" placeholder="Enter Player Name">
+		<br>
+		<br>
+		<input type="text" name="points" placeholder="Enter Points">
+		<br>
+		<br>
+		<input type="text" name="reset" placeholder="Start New Match">
+		<br>
+		<br>
+		<input type="submit">
+	</form>
+</div>
+</div>
+	</body>
+	</html>

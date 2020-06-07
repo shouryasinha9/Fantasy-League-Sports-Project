@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoCric11</title>
+<link rel="icon" type="image/png" href="/static/images/loginlogo1.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--modifying css-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/new.css') }}">
+<!--ends modyfing css-->
+</head>
+	<body>
+
+<!--navbar start-->
+<div class="bg-img">    
+  <ul>
+      <li>
+      	{% if status == False %}
+      	<a class="active" href="/logout/home">Home</a>
+      	{% else %}
+      	<a class="active" href="http://127.0.0.1:5000/">Home</a>
+      	{% endif %}
+      </li>
+      <li><a href="#contact">Contact</a></li>
+      
+      <li style="float: right; padding-right: 5px;">
+      	{% if status == False %}
+        	<button class="lbutton" onclick="document.getElementById('id01').style.display='block'">Login</button>
+        {% else %}
+        	<button class="lbutton" onclick="window.location.href = '{{ url_for('logout') }}'">Logout</button>
+        {% endif %}
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <!-- Modal Content -->
+  <form class="modal-content animate" action="/" method="POST">
+    <div class="imgcontainer">
+      <img src="/static/images/loginlogo2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div style="padding-right: 5px; padding-left: 5px; padding-bottom: 5px;">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Username" name="email" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+    
+      	<button class="lbutton" type="submit">Login</button>
+     	<label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      	</label>
+      <a href="http://127.0.0.1:5000/register" style="color: blue;">Don't have an account? Register here</a>
+    </div>
+
+    <div class="containerc" style="background-color:#f1f1f1; padding: 10px;">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw"><a href="#" style="color: blue; ">Forgot password?</a></span>
+    </div>
+  </form>
+</div>
+      </li>
+<li style="float:right ; padding-right: 5px;"><a href="#htp">How to Play</a></li>
+</ul>
+<div style="height: 280px; width: 480px; display: inline-block; margin-left: 80px;float: left;margin-top: 100px;"><img style="height: 100%; width: 100%;" src="/static/images/loginlogo1.png"></div>
+<div class="midcontain">
+{% if status == False and lg == False %}
+<div class="logmsg">Incorrect<br>Email/Password</div>
+{% elif status == False %}
+<div class="nolog"></div>
+{% else %}
+<div class="logmsg" onclick="window.location.href = '{{ url_for('selectmatch', username = username) }}'">Welcome Back,<br>{{ username }}</div>
+{% endif %}
+
+<div class="now">
+	{% if status == False %}
+	<a>Play Now</a>
+	{% else %}
+	<a href="http://127.0.0.1:5000/matches/{{ username }}">Play Now</a>
+	{% endif %}
+</div>
+</div>
+<div style="display: inline-block;height: 490px; width: 340px; float: right; margin-right: 140px; margin-top: 16px;"><img style="height: 100%; width: 100%;" src="/static/images/virat1.png"></div>
+</div>
+  <!-- Navbar content -->
+  <!-- Upcoming matches-->
+  <h3 class="ucontainer">Upcoming matches</h3>
+  <!--pics-->
+<div class="grey">
+<div class="row">
+  {% if status == False %}	
+  <a style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% else %}
+  <a href="/play/MI/KKR/{{ username }}" style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% endif %}	
+  	<div class="column">
+  <div class="container">
+   <div class="cardheader"> Match 19 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Indian Premier League 2019</div>
+   <div class="cardcontent">
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: left;"><img style="height: 100%; width: 100%;" src="/static/images/KKR.png"></div>
+   	<div style="height: 80px; width: 80px;font-size: 30px;display: inline-block;margin-top: 35px;"><b>V/S</b></div>
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: right;"><img style="height: 100%; width: 100%;" src="/static/images/MI.png"></div>
+   </div>
+   <div class="cardfooter"></div>
+</div>
+</div></a>
+  {% if status == False %}	
+  <a style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% else %}
+  <a href="/play/KKR/CSK/{{ username }}" style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% endif %}	
+	<div class="column">
+<div class="container">
+ <div class="cardheader"> Match 20 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Indian Premier League 2019</div>
+   <div class="cardcontent">
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: left;"><img style="height: 100%; width: 100%;" src="/static/images/KKR.png"></div>
+   	<div style="height: 80px; width: 80px;font-size: 30px;display: inline-block;margin-top: 35px;"><b>V/S</b></div>
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: right;"><img style="height: 100%; width: 100%;" src="/static/images/CSK.png"></div>
+   </div>
+   <div class="cardfooter"></div>
+</div>
+</div></a>
+  {% if status == False %}	
+  <a style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% else %}
+  <a href="/play/CSK/MI/{{ username }}" style="margin-left: 25px; outline: none;text-decoration: none;">
+  {% endif %}	
+
+	<div class="column">
+<div class="container">
+  <div class="cardheader"> Match 21 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Indian Premier League 2019</div>
+   <div class="cardcontent">
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: left;"><img style="height: 100%; width: 100%;" src="/static/images/CSK.png"></div>
+   		<div style="height: 80px; width: 80px;font-size: 30px;display: inline-block;margin-top: 35px;"><b>V/S</b></div>
+   	<div style="height: 80px; width: 80px; margin-top: 15px; display: inline-block; float: right;"><img style="height: 100%; width: 100%;" src="/static/images/MI.png"></div>
+   </div>
+   <div class="cardfooter"></div>
+</div>
+</div>
+</div></a><br>
+    {% if status == False %}
+    <a>
+    {% else %}	
+    <a href="/matches/{{ username }}">
+    {% endif %}	
+	<button type="button" class="btn btn-outline-success" style="padding-right: 80px;padding-left: 80px; padding-top: 10px; padding-bottom: 10px; background-color: white;">MORE MATCHES</button></a>
+</div>
+<!--pics end-->
+<div class = "ht" id="htp"><a style="font-size: 30px;">How to play</a></div>
+<div class="howto">
+	<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img style="width: 100%; height: 100%;" src="/static/images/1.jpg">
+      <div style="position: absolute;top: 20%;left: 50%;transform: translate(-50%, -50%); color: white; font-size: 20px; width: 100%;"><b>LOGIN TO ACCOUNT</b></div>
+    </div>
+    <div class="flip-card-back">
+      <h3 style="margin-top: 40px;">Login to your Account</h3> 
+      <p>Login to your GoCRIC Account to proceed to the next step. If you don't have an account signup as new user.</p> 
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+       <img style="width: 100%; height: 100%;" src="/static/images/2.jpg">
+        <div style="position: absolute;top: 20%;left: 50%;transform: translate(-50%, -50%); color: white; font-size: 20px; width: 100%;"><b>SELECT A MATCH</b></div>
+    </div>
+    <div class="flip-card-back">
+      <h3 style="margin-top: 40px;">Select A Match</h3> 
+      <p>Select any of the upcoming matches from any of the current or upcoming cricket series.</p> 
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+       <img style="width: 100%; height: 100%;" src="/static/images/3.jpg">
+      <div style="position: absolute;top: 20%;left: 50%;transform: translate(-50%, -50%); color: white; font-size: 20px; width: 100%;"><b>CREATE YOUR TEAM</b></div>
+    </div>
+    <div class="flip-card-back">
+      <h3 style="margin-top: 40px;">Create Your Team</h3> 
+      <p>Create a team from any of the current or upcoming cricket series.</p> 
+    </div>
+  </div>
+</div>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+       <img style="width: 100%; height: 100%;" src="/static/images/4.jpg">
+         <div style="position: absolute;top: 20%;left: 50%;transform: translate(-50%, -50%); color: white; font-size: 20px; width: 100%;"><b>FOLLOW THE MATCH</b></div>
+    </div>
+    <div class="flip-card-back">
+       <h3 style="margin-top: 40px;">Follow the Match</h3> 
+      <p>Watch the real match and track your fantasy scorecard (updated every 2 minutes)</p> 
+    </div>
+  </div>
+</div>
+
+<div class="flip-card" style="margin-right: 80px;">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img style="width: 100%; height: 100%;" src="/static/images/5.jpg">
+        <div style="position: absolute;top: 20%;left: 50%;transform: translate(-50%, -50%); color: white; font-size: 20px; width: 100%;"><b>CLAIM REWARDS</b></div>
+    </div>
+    <div class="flip-card-back">
+       <h3 style="margin-top: 40px;">Claim reward points</h3> 
+      <p>Instantly withdraw your winnings from your GoCRIC11 account (One Time Verification required)</p> 
+    </div>
+  </div>
+</div>
+</div>
+<div class = "container2" id="about">
+	<img src="/static/images/loginlogo2.png" style="width: 263px; height: 100% ; object-fit: contain; float: right; z-index: 1; opacity: 1 !important;">
+	<h3 class="ex">Exclusive Features</h3>
+	<br><br>
+	<p style="text-align: left;">
+	While fantasy cricket matches are extremely popular on GoCRIC11, Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+</div>
+
+	<div class="content">
+		<h2>About</h2>
+		<p class="about">GoCRIC11 is India’s biggest Sports Game with an exponentially growing user base of over 2 crore sports fans.
+
+GoCRIC11 is played by using your sport knowledge and skill. You can pick your own team made up of real players for Cricket, Football, Kabaddi & NBA. Create your team within a maximum budget of 100 credits. Your team earns points based on your chosen players' performance in the real-life matches. It's time to showcase your skill and go for glory!
+<br>
+Follow these 5 easy steps to get started:
+<br>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<br>
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+ </div>
+
+<!-- Button to open the modal login form -->
+
+<!--footer start-->
+<footer id="contact">
+  <h4>OFFICIAL PARTNERS</h4>	
+  <p>Posted by: Shourya Sinha</p>
+  <p>Contact information: <a href="shourysinha9@gmail.com">shourysinha9@gmail.com</a></p>
+  <div class="footer_top">
+        <div class="office_address">
+          <h3>OFFICIAL FANTASY LEAGUE</h3>
+          <div class="address">A project created by two CSE branch students from section B</div>
+        </div>
+      </div>
+      <div style="width: 100%; height: 35px; background-color: #1a1a1a;">CONTACT INFORMATION :  SHOURYA SINHA (+91) 9925927653 , SUBHAM GUPTA (+91) 8320064470</div>
+</footer>
+<!--footer end-->
+
+</body>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

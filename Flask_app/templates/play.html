@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoCRIC11</title>
+<link rel="icon" type="image/png" href="/static/images/loginlogo1.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--modifying css-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/play.css') }}">
+<!--ends modyfing css-->
+</head>
+	<body>
+   <div class="myteam">
+     <div class="matchdetails">
+
+       <div class="control">
+
+         <div class="back">
+          <a href="/matches/{{ username }}"><img src="/static/images/back1.png" style="height: 100%; width: 100%;"></a>
+         </div>
+         <b style="color: white; margin-left: 265px;">CREATE TEAM</b>
+         <div class="home">
+          <a href="/"><img src="/static/images/home.png" style="height: 100%; width: 100%;"></a>
+         </div>
+
+         <div class="details">
+          <div class="t1" style="float: left; padding: 17px; color: white; margin-left: 200px;"><b>{{ team1 }}</b></div>
+          <div class="t1" style="float: left;"><img src="/static/images/{{ team1 }}.png" style="height: 100%; width: 100%;"></div>
+          <div class="t1" style="color: white; padding: 20px; margin-left: 10px;"><b>V/S</b></div>
+          <div class="t1" style="float: right; color: white; padding: 17px;margin-right: 200px;"><b>{{ team2 }}</b></div>
+          <div class="t1" style="float: right;"><img src="/static/images/{{ team2 }}.png" style="height: 100%; width: 100%;"></div>
+         </div>
+
+         <div class="credits">
+          <div class="selectiondetails" style="margin-left: 10px;">Players<br><b style="font-size: 25px;" id="playercount">0</b>/11</div>
+
+          <div class="selectiondetails" style="float: right;margin-right: 25px;"> Total<br><span style="font-size: 25px;margin-right: 1px;" id="creditcount"><b>100</b></span></div>
+         </div>
+
+       </div>
+
+       </div>
+       <div class="teamselect">
+        <div class="dropdown">
+            Select 11 Players to continue
+            <div class="dropdown-menu" style="height: 35px;width: 717px;">
+            </div>
+        </div>
+      </div>
+    <div class="playertype">
+      <button class="playertypedetail" onclick="playertype(event, 'BAT')" style="outline: none;" >Batsman<b>(BT)</b></button>
+      <button  class="playertypedetail" onclick="playertype(event, 'BOWL')" style="outline: none;">Bowler<b>(BW)</b></button>
+      <button  class="playertypedetail" onclick="playertype(event, 'WK')"style="outline: none;">Wicketkeeper<b>(WK)</b></button>
+      <button  class="playertypedetail" onclick="playertype(event, 'AR')"style="outline: none;">All-Rounder<b>(AR)</b></button>
+    </div>
+    <div class="playertable">
+      <div class="playertablelabel" style="margin-left: 75px;">Player</div>
+      <div class="playertablelabel" style="margin-left: 140px;">Team</div>
+      <div class="playertablelabel" style="margin-left: 80px;">Type</div>
+      <div class="playertablelabel" style="margin-left: 80px;">Credits</div>
+    </div>
+
+  <form action="{{ url_for('selectplayer' , team1 = team1 , team2 = team2 , username = username) }}" method="POST">
+
+    <div id = "BAT" class="tabcontent">
+    {% for row in rows %}
+    {% if row["TYPE"] == 'BAT' %}
+    <div class="playerdetails">
+      <div class="tooltiptext">
+        <div class="statheader"><b style="margin-top: 5px;font-size: 25px;float: left; margin-left: 10px;">{{ row["NAME"] }}</b></div>
+        <div style="width: 100%; height: 30px;margin-top: 10px;">
+          <span id="h" style="margin-left: 25px;">MAT</span>
+          <span id="h">RUNS</span>
+          <span id="h">INN</span>
+          <span id="h">AVG</span>
+          <span id="h">N/O</span>
+          <span id="h">S/R</span>
+        </div>
+        <div style="width: 100%; height: 30px; margin-bottom: 10px; padding-bottom: 5px;">
+          <b><span id="v" style="margin-left: 20px;">{{ row["MATCHES"] }}</span></b>
+          <b><span id="v" style="margin-left: 23px;">{{ row["RUNS"] }}</span></b>
+          <b><span id="v" style="margin-left: 20px;">{{ row["INNINGS"] }}</span></b>
+          <b><span id="v">{{ row["AVG"] }}</span></b>
+          <b><span id="v" style="margin-left: 15px;">{{ row["NOT_OUT"] }}</span></b>
+          <b><span id="v">{{ row["SR"] }}</span></b>
+        </div>
+        <div style="width: 100%; height: 30px; margin-top: 10px;">
+          <span id="s" style="margin-left: 30px;">HS</span>
+          <span id="s" style="margin-left: 34px;">100s</span>
+          <span id="s">50s</span>
+          <span id="s">4s</span>
+          <span id="s">6s</span>
+        </div>
+        <div style="width: 100%; height: 30px;">
+          <b><span id="n" style="margin-left: 15px;">{{ row["HS"] }}</span></b>
+          <b><span id="n">{{ row["HUNDREDS"] }}</span></b>
+          <b><span id="n" style="margin-left: 28px;">{{ row["FIFTIES"] }}</span></b>
+          <b><span id="n" style="margin-left: 20px;">{{ row["FOUR"] }}</span></b>
+          <b><span id="n" style="margin-left: 17px;">{{ row["SIX"] }}</span></b>
+        </div>
+      </div>
+      <div class="playername"><b>{{ row["NAME"] }}</b></div>
+      <div class="selectplayer">
+        <label class="chcontainer">
+        <input type="checkbox" name="player" value="{{ row['NAME'] }}" id="{{ row['id'] }}" onclick="handleChange(this)">
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="playercredit"><b>{{ row["CREDITS"] }}</b></div>
+      <div class="playtype"><b> {{ row["TYPE"] }}</b> </div>
+      <div class="playerteam"><b> {{ row["TEAM"] }}</b></div>
+      
+    </div>
+     {% endif %}
+     {% endfor %}
+   </div>
+
+     <div id="BOWL"  class="tabcontent">
+    {% for row in rows %}
+    {% if row["TYPE"] == 'BOWL' %}
+     <div class="playerdetails">
+      <div class="tooltiptext">
+        <div class="statheader"><b style="margin-top: 5px;font-size: 25px;float: left; margin-left: 10px;">{{ row["NAME"] }}</b></div>
+        <div style="width: 100%; height: 30px;margin-top: 10px;">
+          <span id="h" style="margin-left: 25px;">MAT</span>
+          <span id="h">RUNS</span>
+          <span id="h">INN</span>
+          <span id="h">AVG</span>
+          <span id="h">N/O</span>
+          <span id="h">S/R</span>
+        </div>
+        <div style="width: 100%; height: 30px; margin-bottom: 10px; padding-bottom: 5px;">
+          <b><span id="v" style="margin-left: 20px;">{{ row["MATCHES"] }}</span></b>
+          <b><span id="v" style="margin-left: 23px;">{{ row["RUNS"] }}</span></b>
+          <b><span id="v" style="margin-left: 20px;">{{ row["INNINGS"] }}</span></b>
+          <b><span id="v">{{ row["AVG"] }}</span></b>
+          <b><span id="v" style="margin-left: 15px;">{{ row["NOT_OUT"] }}</span></b>
+          <b><span id="v">{{ row["SR"] }}</span></b>
+        </div>
+        <div style="width: 100%; height: 30px; margin-top: 10px;">
+          <span id="s" style="margin-left: 30px;">HS</span>
+          <span id="s" style="margin-left: 34px;">100s</span>
+          <span id="s">50s</span>
+          <span id="s">4s</span>
+          <span id="s">6s</span>
+        </div>
+        <div style="width: 100%; height: 30px;">
+          <b><span id="n" style="margin-left: 15px;">{{ row["HS"] }}</span></b>
+          <b><span id="n">{{ row["HUNDREDS"] }}</span></b>
+          <b><span id="n" style="margin-left: 28px;">{{ row["FIFTIES"] }}</span></b>
+          <b><span id="n" style="margin-left: 20px;">{{ row["FOUR"] }}</span></b>
+          <b><span id="n" style="margin-left: 17px;">{{ row["SIX"] }}</span></b>
+        </div>
+      </div>
+      <div class="playername"><b>{{row["NAME"]}}</b></div>
+      <div class="selectplayer">
+        <label class="chcontainer">
+        <input type="checkbox" name="player" value="{{ row['NAME'] }}" id="{{ row['id'] }}"  onclick="handleChange(this)">
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="playercredit"><b>{{ row["CREDITS"] }}</b></div>
+      <div class="playtype"><b> {{ row["TYPE"] }}</b> </div>
+      <div class="playerteam"><b> {{ row["TEAM"] }}</b></div>
+    </div>
+     {% endif %}
+     {% endfor %}
+   </div>
+
+     <div id="WK" class="tabcontent">
+    {% for row in rows %}
+    {% if row["TYPE"] == 'WK' %}
+    <div class="playerdetails">
+      <div class="tooltiptext">
+        <div class="statheader"><b style="margin-top: 5px;font-size: 25px;float: left; margin-left: 10px;">{{ row["NAME"] }}</b></div>
+        <div style="width: 100%; height: 30px;margin-top: 10px;">
+          <span id="h" style="margin-left: 25px;">MAT</span>
+          <span id="h">RUNS</span>
+          <span id="h">INN</span>
+          <span id="h">AVG</span>
+          <span id="h">N/O</span>
+          <span id="h">S/R</span>
+        </div>
+        <div style="width: 100%; height: 30px; margin-bottom: 10px; padding-bottom: 5px;">
+          <b><span id="v" style="margin-left: 20px;">{{ row["MATCHES"] }}</span></b>
+          <b><span id="v" style="margin-left: 23px;">{{ row["RUNS"] }}</span></b>
+          <b><span id="v" style="margin-left: 20px;">{{ row["INNINGS"] }}</span></b>
+          <b><span id="v">{{ row["AVG"] }}</span></b>
+          <b><span id="v" style="margin-left: 15px;">{{ row["NOT_OUT"] }}</span></b>
+          <b><span id="v">{{ row["SR"] }}</span></b>
+        </div>
+        <div style="width: 100%; height: 30px; margin-top: 10px;">
+          <span id="s" style="margin-left: 30px;">HS</span>
+          <span id="s" style="margin-left: 34px;">100s</span>
+          <span id="s">50s</span>
+          <span id="s">4s</span>
+          <span id="s">6s</span>
+        </div>
+        <div style="width: 100%; height: 30px;">
+          <b><span id="n" style="margin-left: 15px;">{{ row["HS"] }}</span></b>
+          <b><span id="n">{{ row["HUNDREDS"] }}</span></b>
+          <b><span id="n" style="margin-left: 28px;">{{ row["FIFTIES"] }}</span></b>
+          <b><span id="n" style="margin-left: 20px;">{{ row["FOUR"] }}</span></b>
+          <b><span id="n" style="margin-left: 17px;">{{ row["SIX"] }}</span></b>
+        </div>
+      </div>
+      <div class="playername"><b>{{row["NAME"]}}</b></div>
+      <div class="selectplayer">
+        <label class="chcontainer">
+        <input type="checkbox" name="player" value="{{ row['NAME'] }}" id="{{ row['id'] }}"  onclick="handleChange(this)">
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="playercredit"><b>{{ row["CREDITS"] }}</b></div>
+      <div class="playtype"><b> {{ row["TYPE"] }}</b> </div>
+      <div class="playerteam"><b> {{ row["TEAM"] }}</b></div>
+      
+    </div>
+     {% endif %}
+     {% endfor %}
+   </div>
+
+    <div id="AR" class="tabcontent">
+    {% for row in rows %}
+    {% if row["TYPE"] == 'AR' %}
+    <div class="playerdetails">
+      <div class="tooltiptext">
+        <div class="statheader"><b style="margin-top: 5px;font-size: 25px;float: left; margin-left: 10px;">{{ row["NAME"] }}</b></div>
+        <div style="width: 100%; height: 30px;margin-top: 10px;">
+          <span id="h" style="margin-left: 25px;">MAT</span>
+          <span id="h">RUNS</span>
+          <span id="h">INN</span>
+          <span id="h">AVG</span>
+          <span id="h">N/O</span>
+          <span id="h">S/R</span>
+        </div>
+        <div style="width: 100%; height: 30px; margin-bottom: 10px; padding-bottom: 5px;">
+          <b><span id="v" style="margin-left: 20px;">{{ row["MATCHES"] }}</span></b>
+          <b><span id="v" style="margin-left: 23px;">{{ row["RUNS"] }}</span></b>
+          <b><span id="v" style="margin-left: 20px;">{{ row["INNINGS"] }}</span></b>
+          <b><span id="v">{{ row["AVG"] }}</span></b>
+          <b><span id="v" style="margin-left: 15px;">{{ row["NOT_OUT"] }}</span></b>
+          <b><span id="v">{{ row["SR"] }}</span></b>
+        </div>
+        <div style="width: 100%; height: 30px; margin-top: 10px;">
+          <span id="s" style="margin-left: 30px;">HS</span>
+          <span id="s" style="margin-left: 34px;">100s</span>
+          <span id="s">50s</span>
+          <span id="s">4s</span>
+          <span id="s">6s</span>
+        </div>
+        <div style="width: 100%; height: 30px;">
+           <b><span id="n" style="margin-left: 15px;">{{ row["HS"] }}</span></b>
+          <b><span id="n">{{ row["HUNDREDS"] }}</span></b>
+          <b><span id="n" style="margin-left: 28px;">{{ row["FIFTIES"] }}</span></b>
+          <b><span id="n" style="margin-left: 20px;">{{ row["FOUR"] }}</span></b>
+          <b><span id="n" style="margin-left: 17px;">{{ row["SIX"] }}</span></b>
+        </div>
+      </div>
+      <div class="playername"><b>{{row["NAME"]}}</b></div>
+      <div class="selectplayer">
+        <label class="chcontainer">
+        <input type="checkbox" name="player" value="{{ row['NAME'] }}" id="{{ row['id'] }}" onclick="handleChange(this)">
+        <span class="checkmark"></span>
+        </label>
+      </div>
+      <div class="playercredit"><b>{{ row["CREDITS"] }}</b></div>
+      <div class="playtype"><b> {{ row["TYPE"] }}</b> </div>
+      <div class="playerteam"><b> {{ row["TEAM"] }}</b></div>
+    </div>
+     {% endif %}
+     {% endfor %}
+   </div>
+
+    <a target="__blank"><button type="submit" class="btn btn-success" id="subut" style="margin-left: 300px; margin-top: 20px; margin-bottom: 20px;" disabled onclick="changeFunc('Want to continue');" >Continue</button></a><br>
+     </div>
+    </form>
+
+   <div class="activity">
+    <div class="myteamdisp">
+    <div class="myteam1" contenteditable="true"><b>MY TEAM</b></div>
+    {% for row in rows %}
+    <div class="mypl {{ row['id'] }}"> 
+      <div class="attr nm"><b>{{ row["NAME"] }}</b></div>
+      <div class="attr tm"><b>{{ row["TEAM"] }}</b></div>
+      <div class="attr pty"><b>{{ row["TYPE"] }}</b></div>
+      <div class="attr cr"><b>{{ row["CREDITS"] }}</b></div>
+    </div>
+    {% endfor %}
+    </div>
+   </div>
+
+	</body>
+   
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+function playertype(evt, playertype){
+   var i,tabcontent,playertypedetail;
+   tabcontent = document.getElementsByClassName("tabcontent");
+   for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  playertypedetail = document.getElementsByClassName("playertypedetail");
+  for (i = 0; i < playertypedetail.length; i++) {
+    playertypedetail[i].className = playertypedetail[i].className.replace(" active", "");
+  }
+  document.getElementById(playertype).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+function changeFunc($i) {
+    alert($i);
+   }
+</script>
+
+<script>
+  function handleChange(obj) {
+    var player = document.getElementById('playercount');
+    var credit = document.getElementById('creditcount');
+    var plcdt = document.getElementsByClassName('playercredit').innerHTML;
+    var remain = credit.innerHTML;
+    var number = player.innerHTML;
+    if(obj.checked){
+          if (number<=10) {
+           number++;}
+           player.innerHTML = number;
+        }
+     else{
+          if (number>0 && number <= 11) {
+           number--;}
+           player.innerHTML = number;
+        }
+    if (number == 11) {
+         document.getElementById("subut").disabled= false;
+    }
+    else {
+      document.getElementById("subut").disabled= true;
+    }
+   }
+</script>
+<script type="text/javascript"> 
+            $(document).ready(function() { 
+                $('input[type="checkbox"]').click(function() { 
+                    var inputValue = $(this).attr("id"); 
+                    $("." + inputValue).toggle(); 
+                }); 
+            }); 
+</script> 
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoCRIC11</title>
+<link rel="icon" type="image/png" href="/static/images/loginlogo1.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--modifying css-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+<!--ends modyfing css-->
+<!--w3.css-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--w3.css ends-->
+</head>
+  <body>
+  <ul>
+      <li>
+        {% if status == False %}
+        <a class="active" href="/logout/home">Home</a>
+        {% else %}
+        <a class="active" href="http://127.0.0.1:5000/">Home</a>
+        {% endif %}
+      </li>
+    </ul>
+
+    <form action = "/savedetails" method="post">  
+    <!--<table>  
+        <tr><td>Name</td><td><input type="text" name="name"></td></tr>  
+        <tr><td>Email</td><td><input type="text" name="email"></td></tr>  
+        <tr><td>Password</td><td><input type="text" name="password"></td></tr>  
+        <tr><td><input type="submit" value="Submit"></td></tr>  
+    </table> 
+    </form> -->
+
+  <div class="container">
+    <h1>Sign Up</h1>
+    <br>
+    <hr style="width: 600px;">
+
+    
+    <label for="Name"><b>Name</b></label>
+    <br>
+    <input type="text" placeholder="Enter Name" name="name" required>
+    <br>
+    <label for="email"><b>Email</b></label>
+    <br>
+    <input type="text" placeholder="Enter Email" name="email" required>
+    <br>
+    <label for="psw"><b>Password</b></label>
+    <br>
+    <input id = "myInput" type="password" placeholder="Enter Password" name="password" required>
+    <br>
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <br>
+    <input id = "myInput"  type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <br>
+    <input type="checkbox" onclick="myFunction()"> Show Password
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+    <p>By creating an account you agree to our Terms & Privacy.</p>
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Sign Up</button>
+      <button type="button" class="cancelbtn">Cancel</button>
+      
+    </div>
+  </div>
+</form>
+   
+</body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+  </html>

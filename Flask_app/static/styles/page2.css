@@ -1,0 +1,211 @@
+html{
+  height: 100%;
+}
+body{
+  background-image: url("/static/styles/b.jpg");
+  background-size: cover;
+  height: 100%;
+  
+}
+.profile{
+  background-color: transparent;
+  height: 100%;
+  width: 750px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  display: inline-block;
+  left: 0;
+}
+.profilepage{
+  background-color:#f2f2f2;
+  height: 95%;
+  width: 730px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  display: inline-block;
+  left: 0;
+  margin-top: 20px;
+  margin-left: 15px;
+  border-radius: 7px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.profhead{
+
+  width: 730px;
+  position: fixed;
+  background-color: #cc2900;
+  border-radius: 7px;
+  height: 90px;
+  z-index: -1;
+  padding-top: 10px;
+}
+.profimage{
+  width: 730px;
+  z-index:3;
+  background-color: transparent;
+  margin-top: 40px;
+  height: 120px;
+}
+.upload_image{
+  height: inherit;
+  width: 120px;
+  background-color: white;
+  margin-left: 305px;
+  border-radius: 50%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border:3px solid #d9d9d9;
+}
+.personal{
+  width: 730px;
+  background-color: transparent;
+  margin-top: 10px;
+  height: 80px;
+  text-align: center;
+}
+.stats{
+  width: 350px;
+  background-color: #bfbfbf;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 350px;
+  border-radius: 7px;
+  display: inline-block;
+  overflow-y: auto;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+}
+.activity{
+  background-color:#f2f2f2;
+  height: 100%;
+  width: 600px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  display: inline-block;
+  right: 0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+}
+.topbar{
+    background-color: #cc2900;
+    display: block;
+    height: 45px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-top: 5px;
+
+}
+.matchcard{
+  height: 180px;
+  margin:15px 15px 8px 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: opacity 300ms linear;
+  opacity: 0;
+  animation: pulse 1s;
+  padding-top: 5px;
+  padding-bottom: 30px;
+}
+
+.home{
+  padding: 4px; 
+  border-radius: 10px; 
+  margin-left: 5px; 
+  background-color: transparent; 
+  text-decoration:none; 
+  float: left;
+  font-size: 15px;
+  border: 1px solid #FFF;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+  display: inline-block;
+}
+.home:hover{
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+.rteam{
+ height: 90px;
+ width: 90px;
+ float: right;
+ margin-right: 25px; 
+}
+.lteam{
+ height: 90px;
+ width: 90px;
+ float: left;
+ margin-left: 25px; 
+}
+.matchdetails{
+  width: 100%;
+  height: 80px;
+  margin: 10px 0;
+}
+.tra{
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.cur-head{
+  height: 40px;
+  background-color: #cc2900;
+  border-radius: 5px ;
+  width: 350px;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  font-size: 13px;
+}
+.cards{
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+   height: 100px;
+   width: 330px;
+   background-color: white;
+   margin-top: 10px;
+   margin-left: 10px;
+   border-radius: 3px;
+   padding: 5px;
+}
+.lb{
+   display: none;
+}
+.c-attr{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+}
+.c-attr:hover{
+    color: #0047b3;
+}
+.rank{
+  width: 100%;
+  height: 35px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+  background-color: white;
+  padding: 6px;
+}
+.rankc{
+  width: 100%;
+  height: 35px;
+  border-bottom: 0.6px solid black;
+}
+.rattr{
+  display: inline-block;
+  padding: 6px;
+  height: 35px;
+}
+#mcard:hover{
+  cursor: pointer;
+}

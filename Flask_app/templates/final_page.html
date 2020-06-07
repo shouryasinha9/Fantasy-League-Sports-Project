@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GoCRIC11</title>
+<link rel="icon" type="image/png" href="/static/images/loginlogo1.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--modifying css-->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/final_page.css') }}">
+<!--ends modyfing css-->
+<!--w3.css-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--w3.css ends-->
+</head>
+	<body>
+  <div class="tablink">
+  <div style="font-size: 30px; margin-left: 10px; display: inline-block; width: 200px;">Progress</div>
+  <a href="/"><div style="height: 30px; width: 30px; display: inline-block; float: right; margin-top: 10px;"><img style="height: 100%; width: 100%; " src="/static/images/home.png"></div></a>
+  </div>
+  <br>
+  <div class="prog-container">
+    <div class="half">
+      <!--<div class="scorecard">
+      <div class="leaderboard" style="border-radius: 5px;">ScoreCard<p style=" margin-left: 290px; display: inline;">Match Ends in:</p> <p id="demo" style="display: inline; float: right;"></p></div>
+      <b style="margin-left: 10px;">{{team1}} vs {{team2}}</b>
+      <br>
+      <div class="scr">
+        <b>{{team1}}</b>
+        <br>
+        <b>Batting : </b>
+        <br>
+         Rohit Mishra 45(23)*
+        <br>
+        <b>Bowling : </b>
+        <br>
+         Mohit Sharma 4ovr 10 
+
+      </div>
+      <div class="scr" style="float: right;">
+        <b>{{team2}}</b>
+        <br>
+        <b>Batting : </b>
+        <br>
+         Mohit Mishra 23(45)*
+        <br>
+        <b>Bowling : </b>
+        <br>
+         Rohit Sharma 1ovr 10 
+      </div>
+      </div>
+      <br>--> 
+
+      <div class="info">
+      <div class="leaderboard">Your Team</div>
+      <div class="ranklabel">
+       <div class="ranklabel-tag" style="margin-left: 20px;">Player</div>
+       <div class="ranklabel-tag" style=" margin-left: 170px;">TeamName</div>
+       <div class="ranklabel-tag" style="margin-left: 50px;">Type</div>
+       <div class="ranklabel-tag" style="margin-left: 35px;">Points Earned</div>
+      </div>
+      {% for row in rows %}
+      <div class="playercard">
+        <div class="nm attr"><b>{{ row['PLAYER'] }}</b></div>
+        <div class="tm attr">{{ row['TEAM'] }}</div>
+        <div class="ty attr">{{ row['TYPE'] }}</div>
+        <div class="pt attr">{{ row["POINTS"] }}</div>
+      </div>
+      {% endfor %}
+    </div>
+     
+    </div>
+
+    <div class="other-half">
+      <div class="leaderboard" style="border-radius: 5px;">LeaderBoard</div>
+      <div class="ranklabel">
+       <div class="ranklabel-tag" style="margin-left: 60px;">Name</div>
+     <div class="ranklabel-tag" style="margin-left: 240px;">Points</div>
+    </div>
+    {% for row in r %}
+    <div class="rankcard">
+      <div class="nme pl">{{ row["ID"] }}</div>
+      <div class="pts pl">{{ row["POINTS"] }}</div>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+	</body>
+   
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 30, 2019 22:40:34").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+	</html>
